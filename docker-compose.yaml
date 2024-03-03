@@ -1,0 +1,51 @@
+version: '3.2'
+name: alpa-test
+services:
+  postgres:
+    container_name: postgres
+    build:
+      dockerfile: ./docker/postgres/Dockerfile
+    env_file:
+      - ./docker/.env
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-123456}
+      POSTGRES_DB: ${POSTGRES_DB:-postgres_db}
+      PGDATA: ${PGDATA:-/data/postgres}
+    volumes:
+      - postgres_vol:${PGDATA:-/data/postgres}
+    ports:
+      - '${DB_PORT:-5432}:5432'
+    networks:
+      - postgres_bridge
+    restart: unless-stopped
+
+  nodejs:
+    container_name: nodejs
+    build:
+      dockerfile: ./Dockerfile
+    depends_on:
+      - postgres
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      - PORT=$PORT
+      - API_VERSION=$API_VERSION
+      - JWT_SECRET=$JWT_SECRET
+      - DB_HOST=$DB_HOST
+      - DB_PORT=$DB_PORT
+      - DB_USER=$DB_USER
+      - DB_PASS=$DB_PASS
+      - DB_NAME=$DB_NAME
+    ports:
+      - '$PORT:$PORT'
+    volumes:
+      - ../src:/app/src
+    networks:
+      - postgres_bridge
+networks:
+  postgres_bridge:
+    driver: bridge
+volumes:
+  postgres_vol:
+  node_modules:
