@@ -4,9 +4,9 @@ services:
   postgres:
     container_name: postgres
     build:
-      dockerfile: ./docker/postgres/Dockerfile
+      dockerfile: postgres/Dockerfile
     env_file:
-      - ./docker/.env
+      - .env
     environment:
       POSTGRES_USER: ${POSTGRES_USER:-postgres}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-123456}
@@ -21,22 +21,14 @@ services:
   nodejs:
     container_name: nodejs
     build:
-      dockerfile: ./Dockerfile
+      context: ..
+      dockerfile: Dockerfile
     depends_on:
       - postgres
     restart: unless-stopped
-    env_file: .env
-    environment:
-      - PORT=$PORT
-      - API_VERSION=$API_VERSION
-      - JWT_SECRET=$JWT_SECRET
-      - DB_HOST=$DB_HOST
-      - DB_PORT=$DB_PORT
-      - DB_USER=$DB_USER
-      - DB_PASS=$DB_PASS
-      - DB_NAME=$DB_NAME
+    env_file: ../.env
     ports:
-      - '$PORT:$PORT'
+      - '$API_PORT:$API_PORT'
     volumes:
       - ../src:/app/src
 volumes:

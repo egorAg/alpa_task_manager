@@ -21,7 +21,7 @@ First of all, create .env at root dir (or just rename .example.env) file and set
 
 ```bash
 # API
-PORT=3000
+PORT=3000 #the same as API_PORT in docker/.env
 API_VERSION='v1'
 JWT_SECRET='qweQWE123!'
 
@@ -41,9 +41,10 @@ POSTGRES_PASSWORD="alpa_admin_password"
 POSTGRES_DB="alpa_test"
 DB_PORT=5432
 PGDATA="/data/postgres"
+API_PORT=3000 #the same as PORT in ../.env
 ```
 
-### Keep in mind that the username, password, and name for the base must match in both .env files
+### Keep in mind that the username, password, name and API_PORT for must match in both .env files
 
 ## Step 2 - Run with docker
 
