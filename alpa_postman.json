@@ -1,0 +1,223 @@
+{
+	"info": {
+		"_postman_id": "11fb4461-aca6-49fc-aa13-fe6938535292",
+		"name": "apla",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15214539"
+	},
+	"item": [
+		{
+			"name": "Authorization",
+			"item": [
+				{
+					"name": "SignUp",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"login\": \"admin\",\n  \"password\": \"qweQWE123!\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/auth/register",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SignIn",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"login\": \"admin\",\n  \"password\": \"qweQWE123!\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/auth/login",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tasks",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Do something\",\n  \"description\": \"Do something with...\",\n  \"deadline\": \"2024-03-03T21:06:16.321Z\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/task",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"task"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/task",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"task"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Summarry",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/task/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"task",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Do something2\",\n  \"description\": \"Do something with...\",\n  \"deadline\": \"2024-03-03T21:06:16.321Z\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/v1/task/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"v1",
+								"task",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/task/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"task",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "token",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibG9naW4iOiJhZG1pbiIsImlhdCI6MTcwOTUwMTA5MywiZXhwIjoxNzA5NTg3NDkzfQ.m4i6cmz5Y06tGnSYHZa2V_XFzuAQVnD8SwVc4YH6EQs",
+			"type": "string"
+		},
+		{
+			"key": "URL",
+			"value": "http://158.160.37.212:3000/api/v1",
+			"type": "string"
+		}
+	]
+}
