@@ -6,8 +6,6 @@ import {
   ApiTags,
   ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
-import { Auth } from 'src/decorators/auth.decorator';
-import { CurrentUser } from 'src/decorators/current-user.decorator';
 import { UserAuthDTO } from '../../user/dto/user.auth.dto';
 import { UserCreateDTO } from '../../user/dto/user.create.dto';
 import { AuthService } from '../services/auth.service';
@@ -95,11 +93,5 @@ export class AuthController {
   @Post('register')
   public register(@Body() data: UserCreateDTO) {
     return this.authService.register(data);
-  }
-
-  @Auth
-  @Post('test')
-  public async test(@CurrentUser() data: number) {
-    return data;
   }
 }
