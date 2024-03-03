@@ -16,8 +16,6 @@ services:
       - postgres_vol:${PGDATA:-/data/postgres}
     ports:
       - '${DB_PORT:-5432}:5432'
-    networks:
-      - postgres_bridge
     restart: unless-stopped
 
   nodejs:
@@ -41,11 +39,6 @@ services:
       - '$PORT:$PORT'
     volumes:
       - ../src:/app/src
-    networks:
-      - postgres_bridge
-networks:
-  postgres_bridge:
-    driver: bridge
 volumes:
   postgres_vol:
   node_modules:
